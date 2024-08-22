@@ -1,0 +1,7 @@
+.icon *:not([fill="none"]) {
+    fill: white !important;
+}
+
+.icon *[stroke]:not([stroke="none"]) {
+    stroke: white !important;
+}
