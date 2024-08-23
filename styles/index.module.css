@@ -5,3 +5,7 @@
 .icon *[stroke]:not([stroke="none"]) {
     stroke: white !important;
 }
+
+.project {
+    transition: margin-left 0.5s ease;
+}

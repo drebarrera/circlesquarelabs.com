@@ -2,7 +2,7 @@ import Image from 'next/image';
 
 export const Hero = () => {
     return (
-        <section className="h-[800px] w-full bg-gradient-to-br from-black to-[#0D1B2A] flex items-center justify-center relative">
+        <section id="hero" className="h-[800px] w-full bg-gradient-to-br from-black to-[#0D1B2A] flex items-center justify-center relative">
             <div className="h-full w-full max-w-[1800px] py-[50px] flex flex-row pl-[100px]">
                 <div className="h-full w-full flex justify-end items-center">
                     <div className="h-full w-full max-w-[65%] relative">
