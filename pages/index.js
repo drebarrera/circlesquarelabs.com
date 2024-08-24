@@ -7,6 +7,7 @@ import { Community } from "@/components/index/community";
 import { Projects } from "@/components/index/projects";
 import { Team } from "@/components/index/team";
 import { Process } from "@/components/index/process";
+import { Final } from "@/components/index/final";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,6 +21,7 @@ export default function Home() {
       <Projects />
       <Team />
       <Process />
+      <Final />
     </main>
   );
 }

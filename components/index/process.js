@@ -1,4 +1,5 @@
 import { Icon } from '@/components/icon';
+import links from '@/data/links.json';
 import data from "@/data/process.json";
 
 export const Process = () => {
@@ -30,7 +31,7 @@ export const Process = () => {
                                 <h4 className="text-2xl font-medium text-white">{ value["title"] }</h4>
                                 <p className="text-xl text-white">{ value["description"] }</p>
                                 {
-                                    (value["link"] != null) ? <a href={value["href"]} className="text-white text-2xl font-medium pt-[5px] link">{value["link"]}&nbsp;<span className="font-sans">&rarr;</span></a> : null
+                                    (value["link"] != null) ? <a href={links[value["href"]]} className="text-white text-2xl font-medium pt-[5px] link">{value["link"]}&nbsp;<span className="font-sans">&rarr;</span></a> : null
                                 }
                             </div>
                         </div>

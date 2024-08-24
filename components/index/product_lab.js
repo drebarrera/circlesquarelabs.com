@@ -1,8 +1,8 @@
 import { useState } from 'react';
-import icons from '@/data/icons.json';
 import { Icon } from '@/components/icon';
 import data from '@/data/product_lab.json';
 import circlesquare from '@/data/circlesquare.json';
+import links from '@/data/links.json';
 import styles from '@/styles/index.module.css';
 
 export const ProductLab = () => {
@@ -48,7 +48,7 @@ export const ProductLab = () => {
             </div>
             <div className="h-fit w-fit flex flex-col justify-center items-center gap-[5px]">
                 <p className="text-white text-2xl">What can we build for you?</p>
-                <a href="#" className="text-white text-2xl font-medium link">Get in touch with a tech expert&nbsp;<span className="font-sans">&rarr;</span></a>
+                <a href={links['inquire']} className="text-white text-2xl font-medium link">Get in touch with a tech expert&nbsp;<span className="font-sans">&rarr;</span></a>
             </div>
         </section>
     );
