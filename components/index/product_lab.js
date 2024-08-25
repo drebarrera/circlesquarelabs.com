@@ -43,7 +43,7 @@ export const ProductLab = () => {
                     <div className="w-[595px] flex flex-col gap-[10px]">
                         <h4 className="text-white text-3xl font-medium">{ selected["title"] }</h4>
                         <p className="h-[190px] overflow-clip text-[#D9D9D9] text-xl">{ selected["description"] }</p>
-                        <div className="relative w-[460px] h-fit flex flex-row justify-center items-center gap-[20px] py-[5px]">
+                        <div className="relative w-[460px] h-fit flex flex-row justify-center items-center gap-[20px] py-[5px] px-[10px]">
                             {
                                 Object.entries(selected["tools"]).map(([index, value]) => {
                                     return <Icon
@@ -53,7 +53,7 @@ export const ProductLab = () => {
                                     />
                                 })
                             }
-                            <div className="absolute top-0 left-0 w-full h-full" style={ {background: 'linear-gradient(to right, rgba(13,13,13,0.8) 0%, rgba(13,13,13,0.05) 30%, rgba(13,13,13,0.05) 70%, rgba(13,13,13,0.8) 100%)'} }></div>
+                            <div className="absolute top-0 left-0 w-full h-full px-[10px]" style={ {background: 'linear-gradient(to right, rgba(13,13,13,0.8) 0%, rgba(13,13,13,0.05) 30%, rgba(13,13,13,0.05) 70%, rgba(13,13,13,0.8) 100%)', borderRadius: "10px"} }></div>
                         </div>
                     </div>
                 </div>

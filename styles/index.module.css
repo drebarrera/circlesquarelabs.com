@@ -1,3 +1,7 @@
+.hero {
+    transition: margin-top 0.5s ease;
+}
+
 .icon *:not([fill="none"]) {
     fill: white !important;
 }
@@ -12,10 +16,12 @@
 
 .tool *:not([fill="none"]) {
     fill: white !important;
+    transition: fill 0.2s ease;
 }
 
 .tool *[stroke]:not([stroke="none"]) {
     stroke: white !important;
+    transition: stroke 0.2s ease;
 }
 
 .tool:hover *:not([fill="none"]) {

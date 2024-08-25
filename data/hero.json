@@ -1,0 +1,5 @@
+{
+    "Software Engineering": {"image": "development", "fit": "cover"},
+    "Product Design": {"image": "chkm8", "fit": "contain"},
+    "Cloud Orchestration": {"image": "sprouty_diagram", "fit": "cover"}
+}
