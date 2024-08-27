@@ -6,7 +6,7 @@ import styles from "@/styles/index.module.css";
 
 export const Final = () => {
     return (
-        <section id="tools" className="h-fit w-full flex flex-col justify-center items-center py-[15px] gap-[30px] md:py-[40px] md:gap-[40px]" style={ {background: 'linear-gradient(170deg, rgba(25,53,78,0) 20%, rgba(0,255,255,0.4) 55%, rgba(25,53,78,0)) 100%'} }>
+        <section id="tools" className="h-fit w-full flex flex-col justify-center items-center pt-[15px] gap-[30px] md:pt-[40px] md:gap-[40px]" style={ {background: 'linear-gradient(170deg, rgba(25,53,78,0) 20%, rgba(0,255,255,0.4) 55%, rgba(25,53,78,0)) 100%'} }>
             <div className="flex flex-col justify-center items-center gap-[5px] px-[25px] ">
                 <h3 className="text-white font-medium text-center text-2xl md:text-3xl">Our Toolkit For</h3>
                 <h3 className="text-white font-semibold text-center text-4xl md:text-5xl">Design, Development, & Deployment</h3>
