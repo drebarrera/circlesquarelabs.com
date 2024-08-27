@@ -81,7 +81,7 @@ export const Projects = () => {
     }
 
     return (
-        <section id="projects" className="relative h-fit w-full flex flex-col justify-center items-center overflow-clip gap-[30px] pb-[40px] md:gap-[50px] md:pb-[80px]" style={ {background: 'radial-gradient(closest-side, #244B75 0%, #060D13 100%)'} }>
+        <section id="projects" className="relative h-fit w-full flex flex-col justify-center items-center overflow-clip gap-[50px] pb-[50px] md:pb-[80px]" style={ {background: 'radial-gradient(closest-side, #244B75 0%, #060D13 100%)'} }>
             <div className="relative h-fit w-full flex flex-col justify-center items-center px-[25px] gap-[50px] pt-[40px] md:pt-[80px]">
                 <div className="flex flex-col justify-center items-center gap-[5px]">
                     <h3 className="text-white font-medium px-[10px] text-2xl md:text-3xl">"Strikingly Innovative"</h3>

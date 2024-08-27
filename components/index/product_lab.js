@@ -45,8 +45,8 @@ export const ProductLab = () => {
                     </div>
                     <div className="flex flex-col gap-[10px] w-full md:w-[595px]">
                         <h4 className="text-white font-medium text-2xl md:text-3xl">{ selected["title"] }</h4>
-                        <p className="overflow-clip text-[#D9D9D9] text-lg md:text-xl md:h-[190px]">{ selected["description"] }</p>
-                        <div className="relative h-fit flex flex-row justify-center items-center py-[5px] w-fit gap-[10px] md:w-[460px] md:gap-[20px] md:px-[10px]">
+                        <p className="overflow-clip text-[#D9D9D9] text-md md:text-xl md:h-[190px]">{ selected["description"] }</p>
+                        <div className="relative h-fit flex flex-row justify-center items-center py-[10px] w-fit gap-[10px] md:w-[460px] md:gap-[20px] md:px-[10px]">
                             {
                                 Object.entries(selected["tools"]).map(([index, value]) => {
                                     return <Icon

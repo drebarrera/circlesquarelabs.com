@@ -46,7 +46,7 @@ export const Team = () => {
                     <div className="relative flex flex-col justify-between w-full gap-[5px] md:w-[620px] md:gap-0">
                         <h4 className="font-medium text-2xl text-black md:text-3xl">{ selected["name"] }</h4>
                         <h4 className="font-medium text-xl text-black md:text-2xl">{ selected["role"] }</h4>
-                        <p className="text-lg text-black md:text-lg">{ selected["description"] }</p>
+                        <p className="text-md text-black md:text-lg">{ selected["description"] }</p>
                     </div>
                 </div>
             </div>
