@@ -1,0 +1,33 @@
+.hero {
+    transition: margin-top 0.5s ease;
+}
+
+.icon *:not([fill="none"]) {
+    fill: white !important;
+}
+
+.icon *[stroke]:not([stroke="none"]) {
+    stroke: white !important;
+}
+
+.project {
+    transition: margin-left 0.5s ease;
+}
+
+.tool *:not([fill="none"]) {
+    fill: white !important;
+    transition: fill 0.2s ease;
+}
+
+.tool *[stroke]:not([stroke="none"]) {
+    stroke: white !important;
+    transition: stroke 0.2s ease;
+}
+
+.tool:hover *:not([fill="none"]) {
+    fill: rgba(0,255,255,0.75) !important;
+}
+
+.tool:hover *[stroke]:not([stroke="none"]) {
+    stroke: rgba(0,255,255,0.75) !important;
+}

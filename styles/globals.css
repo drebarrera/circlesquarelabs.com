@@ -1,0 +1,59 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: #060D13;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+.link {
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+#menu {
+  transition: background-color 0.5s ease;
+  transition: height 0.5s ease;
+}
+
+.menuToggled svg path {
+  transition: stroke 0.5s ease;
+}
+
+.menuStandard {
+  height: 70px;
+  background-color: transparent;
+}
+
+.menuToggled {
+  height: 185px;
+  background-color: white;
+}
+
+.menuToggled svg path {
+  stroke: magenta !important;
+}

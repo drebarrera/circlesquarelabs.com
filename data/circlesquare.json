@@ -1,0 +1,7 @@
+{
+    "title": "CircleSquare Labs",
+    "bg-start": "#18324E",
+    "bg-stop": "#0C1927",
+    "description": "At CircleSquare, we believe in the power of well-rounded solutions to drive innovation and impact. We are a full-service technology firm dedicated to helping businesses and communities thrive in the digital age. Our diverse expertise spans brand design, web development, full-stack engineering, cloud orchestration, data processing, and strategic advising.",
+    "tools": ["photoshop", "figma", "wordpress", "aws", "docker", "react", "flutter", "mongodb"]
+}
