@@ -12,7 +12,7 @@ export const Header = () => {
     }
 
     return (
-        <header className="h-[70px] bg-[rgba(0,0,0,0.6)] px-[50px] w-full flex flex-row justify-between items-center sticky top-0 z-10">
+        <header className="h-[70px] bg-[rgba(0,0,0,0.8)] px-[50px] w-full flex flex-row justify-between items-center sticky top-0 z-10">
             <img src="/assets/brand/cs-full-color-dark.svg" alt="CircleSquare Labs" className="h-[45px] w-auto"/>
             <div id="menu" className={`absolute right-0 top-0 overflow-clip flex flex-col items-end p-[15px] rounded-lg lg:relative lg:flex-row lg:space-x-[40px] lg:p-0 lg:items-center lg:bg-transparent ${menuToggled ? 'menuToggled' : 'menuStandard'}`}>
                 <Icon icon="menu" classData="relative w-[40px] h-[40px] lg:hidden cursor-pointer" onClick={() => toggleMenu()}/>
