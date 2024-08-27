@@ -43,8 +43,8 @@ export const Community = () => {
                         </div>
                     </div>
                     <div className="relative flex flex-col justify-between w-full md:w-[620px]">
-                        <quote className="font-light text-md md:text-lg" style={ {'lineHeight': '1.2'} }>{selected["description"]}</quote>
-                        <p className="font-normal text-right text-lg md:text-xl">- {selected["name"]}, {selected["position"]} at {selected["company"]}</p>
+                        <quote className="font-light text-md text-black md:text-lg" style={ {'lineHeight': '1.2'} }>{selected["description"]}</quote>
+                        <p className="font-normal text-right text-lg text-black md:text-xl">- {selected["name"]}, {selected["position"]} at {selected["company"]}</p>
                     </div>
                 </div>
             </div>

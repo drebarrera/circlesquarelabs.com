@@ -83,7 +83,7 @@ export const Hero = () => {
 
     return (
         <section id="hero" className={`h-[${sectionHeight}px] w-full bg-gradient-to-br from-black to-[#0D1B2A] flex items-center justify-center relative`}>
-            <div className="h-full w-full max-w-[1800px] flex flex-row pl-[50px] pt-[50px] pb-[25px] md:pb-[50px] lg:pl-[100px]">
+            <div className="h-full w-full max-w-[1800px] flex flex-row pl-[50px] pb-[25px] md:pt-[50px] md:pb-[50px] lg:pl-[100px]">
                 <div className="h-full w-full flex flex-col justify-start items-end overflow-clip gap-[100px]">
                     {
                         heroList.map(([key, value], index) => {
