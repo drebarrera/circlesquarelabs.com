@@ -35,12 +35,12 @@ export const Hero = () => {
                         nextHero();
                     }
                     if (count <= heroTitleEntry.length) {
-                        setHeroTitle((prevHeroTitle) => {
+                        setHeroTitle(() => {
                             return heroTitleEntry.slice(0, count);
                         });
                     }
                     if (((heroInterval / heroTitleInterval) - count) <= heroTitleEntry.length) {
-                        setHeroTitle((prevHeroTitle) => {
+                        setHeroTitle(() => {
                             return heroTitleEntry.slice(0, (heroInterval / heroTitleInterval) - count);
                         });
                     }
@@ -67,6 +67,7 @@ export const Hero = () => {
         
         setTimeout(() => {
             setHeroIndex((prevHeroIndex) => {
+                console.log(prevHeroIndex);
                 const newIndex = ((prevHeroIndex + 1) % heroEntries.length + heroEntries.length) % heroEntries.length;
                 setHeroList(() => {
                     const extrapolated = [];
