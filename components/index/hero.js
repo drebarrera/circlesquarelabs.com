@@ -17,8 +17,6 @@ export const Hero = () => {
     const [animate, setAnimate] = useState(true);
     const [offset, setOffset] = useState(0);
 
-    var isFirstNextHero = true;
-
     function maxTitleLength() {
         return heroEntries.reduce((max, entry) => {
             return (entry[0].length > max) ? entry[0].length : max;
@@ -57,17 +55,10 @@ export const Hero = () => {
     }, []);
 
     function nextHero() {
-        if (isFirstNextHero) {
-            isFirstNextHero = false;
-            return;
-        } else {
-            isFirstNextHero = true;
-        }
         setOffset((prevOffset) => prevOffset - sectionHeight);
         
         setTimeout(() => {
             setHeroIndex((prevHeroIndex) => {
-                console.log(prevHeroIndex);
                 const newIndex = ((prevHeroIndex + 1) % heroEntries.length + heroEntries.length) % heroEntries.length;
                 setHeroList(() => {
                     const extrapolated = [];
