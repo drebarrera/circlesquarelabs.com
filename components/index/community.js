@@ -5,7 +5,7 @@ import data from '@/data/community.json';
 export const Community = () => {
     const [selected, setSelected] = useState(data[Object.keys(data)[0]]);
     return (
-        <section className="h-fit w-full flex flex-col justify-center items-center pt-[30px] pb-[15px] px-[25px] gap-[40px] bg-[#060D13] md:pt-[80px] md:pb-[30px]">
+        <section className="h-fit w-full flex flex-col justify-center items-center pt-[30px] pb-[30px] px-[25px] gap-[40px] bg-[#060D13] md:pt-[80px]">
             <div className="flex flex-col justify-center items-center gap-[5px]">
                 <h3 className="text-white font-medium text-center px-[10px] text-2xl md:text-3xl">Community Supported</h3>
                 <h3 className="text-white font-semibold text-center px-[10px] text-4xl md:text-5xl">Client Recommended</h3>
@@ -43,7 +43,7 @@ export const Community = () => {
                         </div>
                     </div>
                     <div className="relative flex flex-col justify-between w-full md:w-[620px]">
-                        <quote className="font-light text-md text-black md:text-lg" style={ {'lineHeight': '1.2'} }>{selected["description"]}</quote>
+                        <quote className="font-normal text-md text-black pb-[5px] md:text-lg" style={ {'lineHeight': '1.2'} }>{selected["description"]}</quote>
                         <p className="font-normal text-right text-lg text-black md:text-xl">- {selected["name"]}, {selected["position"]} at {selected["company"]}</p>
                     </div>
                 </div>
