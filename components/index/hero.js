@@ -34,7 +34,6 @@ export const Hero = () => {
                     if (count == (heroInterval / heroTitleInterval) - 1 - 4) {
                         nextHero();
                     }
-                    console.log(prevHeroTitleCount, heroInterval / heroTitleInterval, heroTitleEntry, count);
                     if (count <= heroTitleEntry.length) {
                         setHeroTitle((prevHeroTitle) => {
                             return heroTitleEntry.slice(0, count);
@@ -92,11 +91,11 @@ export const Hero = () => {
 
     return (
         <section id="hero" className={`h-[${sectionHeight}px] w-full bg-gradient-to-br from-black to-[#0D1B2A] flex items-center justify-center relative`}>
-            <div className="h-full w-full max-w-[1800px] py-[50px] flex flex-row pl-[100px]">
+            <div className="h-full w-full max-w-[1800px] flex flex-row pl-[50px] pt-[50px] pb-[25px] md:pb-[50px] lg:pl-[100px]">
                 <div className="h-full w-full flex flex-col justify-start items-end overflow-clip gap-[100px]">
                     {
                         heroList.map(([key, value], index) => {
-                            return <div key={index} className={`relative h-full w-full max-w-[65%] flex-none  ${animate ? styles.hero : ''}`} style={ {marginTop: `${(index == 0) ? offset : 0}px`} }>
+                            return <div key={index} className={`relative h-full w-full flex-none max-w-[90%] lg:max-w-[65%]  ${animate ? styles.hero : ''}`} style={ {marginTop: `${(index == 0) ? offset : 0}px`} }>
                                 <Image
                                     src={`/assets/index/hero/${value["image"]}.webp`}
                                     alt="Code Example"
@@ -108,12 +107,12 @@ export const Hero = () => {
                     }
                     
                 </div>
-                <div className="absolute top-0 left-0 pl-[4%] h-full w-full flex flex-col justify-center gap-[20px]">
+                <div className="absolute top-0 left-0 pl-[4%] h-full w-full flex flex-col justify-center gap-[20px] bg-gradient-to-r from-[rgba(0,0,0,1)] to-[rgba(0,0,0,0)] lg:from-[rgba(0,0,0,0)]">
                     <div className="flex flex-col justify-center gap-[10px]">
-                        <h2 className="text-white text-5xl font-semibold" style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}>{`${heroTitle}`}<span className="font-normal ml-[5px]">{heroTitleEllipsis ? '|' : ''}</span></h2>
-                        <h2 className="text-[#CCCCCC] text-4xl font-semibold" style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}>Done Simply.</h2>
+                        <h2 className="text-white font-semibold text-4xl md:text-5xl" style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}>{`${heroTitle}`}<span className="font-normal ml-[5px]">{heroTitleEllipsis ? '|' : ''}</span></h2>
+                        <h2 className="text-[#CCCCCC] text-3xl font-semibold md:text-4xl" style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}>Done Simply.</h2>
                     </div>
-                    <img src="/assets/brand/cs-icon-color.svg" alt="CircleSquare Icon" width="75" height="75" />
+                    <img src="/assets/brand/cs-icon-color.svg" alt="CircleSquare Icon" className="w-[60px] h-[60px] md:w-[75px] md:h-[75px]" />
                 </div>
             </div>
             <div className="absolute top-0 left-0 w-full h-full" style={{ background: 'linear-gradient(rgba(0,0,0,1) 0%, rgba(0,0,0,0.05) 20%, rgba(0,0,0,0) 50%, rgba(6,13,19,0.05) 80%, rgba(6,13,19,1) 100%)' }}></div>

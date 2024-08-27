@@ -34,3 +34,26 @@ body {
 .link:hover {
   text-decoration: underline;
 }
+
+#menu {
+  transition: background-color 0.5s ease;
+  transition: height 0.5s ease;
+}
+
+.menuToggled svg path {
+  transition: stroke 0.5s ease;
+}
+
+.menuStandard {
+  height: 70px;
+  background-color: transparent;
+}
+
+.menuToggled {
+  height: 185px;
+  background-color: white;
+}
+
+.menuToggled svg path {
+  stroke: magenta !important;
+}
