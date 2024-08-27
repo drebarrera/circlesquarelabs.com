@@ -20,7 +20,7 @@ export const Community = () => {
                             return <div className="relative flex flex-row justify-center items-center gap-[15px] w-[70px] h-[70px] md:gap-[30px] md:w-[100px] md:h-[100px]">
                                 <Image 
                                     key={index} 
-                                    src={`/assets/index/community/${key.replace(' ', '_')}.webp`} 
+                                    src={`/assets/index/community/${key.toLowerCase().replace(' ', '_')}.webp`} 
                                     alt={key} 
                                     fill
                                     className="cursor-pointer"
@@ -35,7 +35,7 @@ export const Community = () => {
                     <div className="relative w-[75px] h-[75px] md:w-[100px] md:h-[100px]">
                         <div className="relative w-[75px] h-[75px] md:w-[100px] md:h-[100px]">
                             <Image
-                                src={`/assets/index/community/${selected["name"].replace(' ', '_')}.webp`} 
+                                src={`/assets/index/community/${selected["name"].toLowerCase().replace(' ', '_')}.webp`} 
                                 alt={selected["name"]}
                                 fill
                                 style={ {'borderRadius': '50px', 'boxShadow': '0px 4px 6px rgba(0, 0, 0, 0.1)'} }

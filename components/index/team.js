@@ -20,7 +20,7 @@ export const Team = () => {
                             return <div className="relative flex flex-row justify-center items-center gap-[15px] w-[70px] h-[70px] md:gap-[30px] md:w-[100px] md:h-[100px]">
                                 <Image 
                                     key={index} 
-                                    src={`/assets/index/team/${key.replace(' ', '_')}.webp`} 
+                                    src={`/assets/index/team/${key.toLowerCase().replace(' ', '_')}.webp`} 
                                     alt={key} 
                                     fill
                                     className="cursor-pointer"
@@ -35,7 +35,7 @@ export const Team = () => {
                     <div className="relative w-[75px] h-[75px] md:w-[100px] md:h-[100px]">
                         <div className="relative w-[75px] h-[75px] md:w-[100px] md:h-[100px]">
                             <Image 
-                                src={`/assets/index/team/${selected["name"].replace(' ', '_')}.webp`} 
+                                src={`/assets/index/team/${selected["name"].toLowerCase().replace(' ', '_')}.webp`} 
                                 alt={selected["name"]}
                                 width={100}
                                 height={100}
