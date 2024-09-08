@@ -31,7 +31,7 @@ export const Community = () => {
                         })
                     }
                 </div>
-                <div className="p-[15px] bg-white flex w-full h-fit gap-[15px] flex-col md:w-[775px] md:h-[225px] md:gap-[25px] md:flex-row" style={ {'borderRadius': '15px'} }>
+                <div className="p-[15px] bg-white flex w-full h-fit gap-[15px] flex-col md:w-[775px] md:h-[300px] md:gap-[25px] md:flex-row" style={ {'borderRadius': '15px'} }>
                     <div className="relative w-[75px] h-[75px] md:w-[100px] md:h-[100px]">
                         <div className="relative w-[75px] h-[75px] md:w-[100px] md:h-[100px]">
                             <Image
@@ -42,9 +42,13 @@ export const Community = () => {
                             />
                         </div>
                     </div>
-                    <div className="relative flex flex-col justify-between w-full md:w-[620px]">
+                    <div className="flex flex-row w-full md:w-[620px]">
+                    <div className="font-serif text-6xl mr-[5px] opacity-70">&ldquo;</div>
+                    <div className="relative flex flex-col justify-between mt-[10px]">
                         <quote className="font-normal text-md text-black pb-[5px] md:text-lg" style={ {'lineHeight': '1.2'} }>{selected["description"]}</quote>
                         <p className="font-normal text-right text-lg text-black md:text-xl">- {selected["name"]}, {selected["position"]} at {selected["company"]}</p>
+                    </div>
+                    <div className="font-serif text-6xl flex items-end opacity-70">&rdquo;</div>
                     </div>
                 </div>
             </div>
