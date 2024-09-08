@@ -31,7 +31,7 @@ export const Team = () => {
                         })
                     }
                 </div>
-                <div className="p-[15px] bg-white flex w-full h-fit gap-[15px] flex-col md:w-[775px] md:h-[325px] md:gap-[25px] md:flex-row" style={ {'borderRadius': '15px'} }>
+                <div className="p-[15px] bg-white flex w-full h-fit gap-[15px] flex-col md:w-[775px] md:h-[275px] md:gap-[25px] md:flex-row" style={ {'borderRadius': '15px'} }>
                     <div className="relative w-[75px] h-[75px] md:w-[100px] md:h-[100px]">
                         <div className="relative w-[75px] h-[75px] md:w-[100px] md:h-[100px]">
                             <Image 
@@ -43,10 +43,12 @@ export const Team = () => {
                             />
                         </div>
                     </div>
-                    <div className="relative flex flex-col justify-between w-full gap-[5px] md:w-[620px] md:gap-0">
-                        <h4 className="font-medium text-2xl text-black md:text-3xl">{ selected["name"] }</h4>
-                        <h4 className="font-medium text-xl text-black md:text-2xl">{ selected["role"] }</h4>
-                        <p className="text-md text-black md:text-lg">{ selected["description"] }</p>
+                    <div className="relative flex flex-col w-full gap-[5px] md:w-[620px]">
+                        <div className="flex flex-col">
+                            <h4 className="font-medium text-xl text-black md:text-2xl">{ selected["name"] }</h4>
+                            <h4 className="font-medium text-lg text-black md:text-xl">{ selected["role"] }</h4>
+                        </div>
+                        <p className="text-md text-black md:text-lg" style={ {'lineHeight': '1.2'} }>{ selected["description"] }</p>
                     </div>
                 </div>
             </div>
