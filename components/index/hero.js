@@ -4,6 +4,7 @@ import hero from '@/data/hero.json';
 import styles from '@/styles/index.module.css';
 
 export const Hero = () => {
+    const [windowWidth, setWindowWidth] = useState(0);
     const sectionHeight = 800;
     const heroTitleInterval = 125;
     const heroEntries = Object.entries(hero);
@@ -54,6 +55,20 @@ export const Hero = () => {
         return () => clearInterval(interval);
     }, []);
 
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+    
+        handleResize();
+    
+        window.addEventListener('resize', handleResize);
+    
+        return () => {
+          window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
     function nextHero() {
         setOffset((prevOffset) => prevOffset - sectionHeight);
         
@@ -83,16 +98,16 @@ export const Hero = () => {
 
     return (
         <section id="hero" className={`h-[${sectionHeight}px] w-full bg-gradient-to-br from-black to-[#0D1B2A] flex items-center justify-center relative`}>
-            <div className="h-full w-full max-w-[1800px] flex flex-row pl-[50px] pb-[25px] md:pt-[50px] md:pb-[50px] lg:pl-[100px]">
+            <div className="h-full w-full max-w-[1800px] flex flex-row pl-[25px] pb-[25px] md:pt-[50px] md:pb-[50px] lg:pl-[100px]">
                 <div className="h-full w-full flex flex-col justify-start items-end overflow-clip gap-[100px]">
                     {
                         heroList.map(([key, value], index) => {
-                            return <div key={index} className={`relative h-full w-full flex-none max-w-[90%] lg:max-w-[65%]  ${animate ? styles.hero : ''}`} style={ {marginTop: `${(index == 0) ? offset : 0}px`} }>
+                            return <div key={index} className={`relative h-full w-full flex-none max-w-[95%] lg:max-w-[65%]  ${animate ? styles.hero : ''}`} style={ {marginTop: `${(index == 0) ? offset : 0}px`} }>
                                 <Image
-                                    src={`/assets/index/hero/${value["image"]}.webp`}
+                                    src={`/assets/index/hero/${(value["fit"] == "switch" && windowWidth < 760) ?  value["image"] + "_sm" : (value["fit"] == "switch" && windowWidth >= 760) ? value["image"] + "_lg" : value["image"]}.webp`}
                                     alt="Code Example"
                                     fill
-                                    style={{ objectFit: value["fit"], objectPosition: 'left' }}
+                                    style={{ objectFit: (value["fit"] == "switch") ? "cover" : value["fit"], objectPosition: (value["fit"] == "switch" && windowWidth < 760) ? 'center' : 'left' }}
                                 />
                             </div>
                         })

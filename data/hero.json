@@ -1,5 +1,5 @@
 {
     "Software Engineering": {"image": "development", "fit": "cover"},
-    "Product Design": {"image": "chkm8", "fit": "contain"},
+    "Product Design": {"image": "chkm8", "fit": "switch"},
     "Cloud Orchestration": {"image": "sprouty_diagram", "fit": "cover"}
 }
