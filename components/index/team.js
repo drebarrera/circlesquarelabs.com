@@ -31,7 +31,7 @@ export const Team = () => {
                         })
                     }
                 </div>
-                <div className="p-[15px] bg-white flex w-full h-fit gap-[15px] flex-col md:w-[775px] md:h-[275px] md:gap-[25px] md:flex-row" style={ {'borderRadius': '15px'} }>
+                <div className="p-[15px] bg-white flex w-full h-fit gap-[15px] flex-col md:w-[775px] md:h-[290px] md:gap-[25px] md:flex-row" style={ {'borderRadius': '15px'} }>
                     <div className="relative w-[75px] h-[75px] md:w-[100px] md:h-[100px]">
                         <div className="relative w-[75px] h-[75px] md:w-[100px] md:h-[100px]">
                             <Image 
