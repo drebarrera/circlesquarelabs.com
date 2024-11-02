@@ -11,10 +11,10 @@ export const Team = () => {
                 <h3 className="text-white font-semibold text-center px-[10px] text-4xl md:text-5xl">Introducing Our Tech Team</h3>
             </div>
             <div 
-                className="flex flex-col justify-center items-center gap-[30px]"
+                className="w-full flex flex-col justify-center items-center gap-[30px]"
                 onMouseLeave={() => setSelected(data[Object.keys(data)[0]])}
             >
-                <div className="h-fit w-fit flex flex-row justify-center items-center gap-[15px] md:gap-[30px]">
+                <div className="h-fit w-full flex flex-row flex-wrap justify-center items-center gap-[15px] md:gap-[30px]">
                     {
                         Object.entries(data).map(([key, value], index) => {
                             return <div className="relative flex flex-row justify-center items-center gap-[15px] w-[70px] h-[70px] md:gap-[30px] md:w-[100px] md:h-[100px]">
