@@ -1,10 +1,28 @@
 import Image from "next/image";
+import { useState, useEffect } from 'react';
+
 import { Icon } from "@/components/icon";
 import tools from "@/data/tools.json";
 import links from "@/data/links.json";
 import styles from "@/styles/index.module.css";
 
 export const Final = () => {
+    const [windowWidth, setWindowWidth] = useState(0);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+    
+        handleResize();
+    
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+          window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+    
     return (
         <section id="tools" className="h-fit w-full flex flex-col justify-center items-center pt-[15px] gap-[30px] md:pt-[40px] md:gap-[40px]" style={ {background: 'linear-gradient(170deg, rgba(25,53,78,0) 20%, rgba(0,255,255,0.4) 55%, rgba(25,53,78,0)) 100%'} }>
             <div className="flex flex-col justify-center items-center gap-[5px] px-[25px] ">
@@ -36,7 +54,7 @@ export const Final = () => {
                     </div>
                     <div className="absolute top-0 left-0 pr-[4%] h-full w-full flex flex-col justify-center items-end gap-[20px] px-[25px] ">
                         <div className="flex flex-col justify-center gap-[10px] w-full md:w-[500px]">
-                            <h2 className="text-white text-right font-semibold text-4xl md:text-5xl" style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)' }}>Ready to Plan, Build, and Deploy</h2>
+                            <h2 className="text-white text-right font-semibold text-4xl md:text-5xl" style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)', lineHeight: (windowWidth < 768) ? '45px' : '60px' }}>Ready to Plan, Build, and Deploy</h2>
                         </div>
                         <a href={links['inquire']} className="text-white text-2xl font-medium link">Let's get in touch&nbsp;<span className="font-sans">&rarr;</span></a>
                         <img src="/assets/brand/cs-icon-color.svg" alt="CircleSquare Icon" className="w-[60px] h-[60px] md:w-[75px] md:h-[75px]" />

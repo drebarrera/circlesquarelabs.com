@@ -1,9 +1,26 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import data from '@/data/team.json';
+import links from "@/data/links.json";
 
 export const Team = () => {
     const [selected, setSelected] = useState(data[Object.keys(data)[0]]);
+    const [windowWidth, setWindowWidth] = useState(0);
+
+    useEffect(() => {
+        const handleResize = () => {
+            setWindowWidth(window.innerWidth);
+        };
+    
+        handleResize();
+    
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+          window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+    
     return (
         <section id="team" className="h-fit w-full flex flex-col justify-center items-center py-[40px] px-[25px] gap-[40px] md:py-[80px]" style={ {background: 'linear-gradient(to bottom, #060D13 0%, #4A184E 50%, #060D13 100%)'} }>
             <div className="flex flex-col justify-center items-center gap-[5px]">
@@ -14,10 +31,10 @@ export const Team = () => {
                 className="w-full flex flex-col justify-center items-center gap-[30px]"
                 onMouseLeave={() => setSelected(data[Object.keys(data)[0]])}
             >
-                <div className="h-fit w-full flex flex-row flex-wrap justify-center items-center gap-[15px] md:gap-[30px]">
+                <div className={`relative h-fit w-full flex flex-row flex-wrap justify-center items-center max-h-[155px] gap-[15px] md:gap-[30px] md:justify-start md:flex-nowrap md:max-w-[1010px] md:overflow-x-hidden ${(windowWidth < 768) ? "mask-opacity-gradient-b":"mask-opacity-gradient-h"}`}>
                     {
                         Object.entries(data).map(([key, value], index) => {
-                            return <div className="relative flex flex-row justify-center items-center gap-[15px] w-[70px] h-[70px] md:gap-[30px] md:w-[100px] md:h-[100px]">
+                            return <div className="relative flex flex-row justify-center items-center flex-shrink-0 gap-[15px] w-[70px] h-[70px] md:gap-[30px] md:w-[100px] md:h-[100px]">
                                 <Image 
                                     key={index} 
                                     src={`/assets/index/team/${key.toLowerCase().replace(' ', '_')}.webp`} 
@@ -31,6 +48,7 @@ export const Team = () => {
                         })
                     }
                 </div>
+                <a href={links['team']} className="text-white font-medium link text-center text-xl md:text-2xl">Meet the full team&nbsp;<span className="font-sans">&rarr;</span></a>
                 <div className="p-[15px] bg-white flex w-full h-fit gap-[15px] flex-col md:w-[775px] md:h-[290px] md:gap-[25px] md:flex-row" style={ {'borderRadius': '15px'} }>
                     <div className="relative w-[75px] h-[75px] md:w-[100px] md:h-[100px]">
                         <div className="relative w-[75px] h-[75px] md:w-[100px] md:h-[100px]">
