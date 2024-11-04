@@ -36,9 +36,9 @@ export const Main = () => {
                     <h2 className="text-white font-bold text-4xl sm:text-5xl md:text-6xl">Meet Our Team</h2>
                     <h3 className="text-white text-lg sm:text-2xl md:text-3xl">Of Expert Engineers, Designers, and Consultants</h3>
                 </div>
-                <a href={links['team']} className="text-white font-medium link text-center text-xl md:text-2xl">Ready to plan, build, and deploy&nbsp;<span className="font-sans">&rarr;</span></a>
+                <a href={links['inquire']} className="text-white font-medium link text-center text-xl md:text-2xl">Ready to plan, build, and deploy&nbsp;<span className="font-sans">&rarr;</span></a>
             </div>
-            <div id="spotlight" className="relative top-[-65px]"></div>
+            <div id="spotlight" className="relative top-[-65px] sm:top-[-90px]"></div>
             <div className="w-full flex flex-col sm:flex-row gap-[30px] h-fit sm:h-[875px] pl-[10px] pr-[10px] sm:pl-[20px] sm:pr-[0px]">
                 <div className="h-fit sm:h-[855px] w-full flex flex-col sm:min-w-[450px] max-w-[600px] bg-[rgba(0,0,0,0.3)] pb-[30px] sm:pb-[0px] pt-[30px] px-[30px] gap-[10px] sm:gap-[20px]" style={{'border-radius': '20px'}}>
                     <div className="relative w-[100px] h-[100px] sm:w-[200px] sm:h-[200px] md:w-[250px] md:h-[250px]">
