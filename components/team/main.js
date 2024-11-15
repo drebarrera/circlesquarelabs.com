@@ -59,63 +59,7 @@ export const Main = ({ teamData, fn, ln }) => {
                             })
                         }
                         {
-                            /*
-                             ['4', 'Go']
-1
-: 
-(2) ['10', 'Node.js']
-2
-: 
-(2) ['12', 'SQL']
-3
-: 
-(2) ['13', 'NoSQL']
-4
-: 
-(2) ['19', 'Unix']
-5
-: 
-(2) ['20', 'Bash Scripting']
-6
-: 
-(2) ['21', 'Shell Scripting']
-7
-: 
-(2) ['22', 'JSON']
-8
-: 
-(2) ['23', 'RESTful APIs']
-9
-: 
-(2) ['24', 'Full-Stack Development']
-10
-: 
-(2) ['25', 'Backend Development']
-11
-: 
-(2) ['26', 'Frontend Development']
-12
-: 
-(2) ['28', 'GitHub']
-13
-: 
-(2) ['30', 'UI Design']
-14
-: 
-(2) ['31', 'UX Design']
-15
-: 
-(2) ['32', 'Web Design']
-16
-: 
-(2) ['36', 'CI/CD']
-17
-: 
-(2) ['37', 'Color Theory']
-18
-: 
-(2) ['40', 'TailwindCSS']*/
-                            console.log(Object.entries(selected["Skills"]).filter((entry, index) => !Object.keys(icons).includes(entry[1]?.toLowerCase())))
+                            //console.log(Object.entries(selected["Skills"]).filter((entry, index) => !Object.keys(icons).includes(entry[1]?.toLowerCase())))
                         }
                     </div>
                 </div>
