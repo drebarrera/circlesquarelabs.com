@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import data from '@/data/team.json';
 import links from "@/data/links.json";
 
-export const Team = () => {
+export const Team = ({ teamData }) => {
     const [selected, setSelected] = useState(data[Object.keys(data)[0]]);
     const [windowWidth, setWindowWidth] = useState(0);
+
+    const team = [...teamData];
 
     useEffect(() => {
         const handleResize = () => {
@@ -33,15 +35,15 @@ export const Team = () => {
             >
                 <div className={`relative h-fit w-full flex flex-row flex-wrap justify-center items-center max-h-[155px] gap-[15px] md:gap-[30px] md:justify-start md:flex-nowrap md:max-w-[1010px] md:overflow-x-hidden ${(windowWidth < 768) ? "mask-opacity-gradient-b":"mask-opacity-gradient-h"}`}>
                     {
-                        Object.entries(data).map(([key, value], index) => {
-                            return <div className="relative flex flex-row justify-center items-center flex-shrink-0 gap-[15px] w-[70px] h-[70px] md:gap-[30px] md:w-[100px] md:h-[100px]">
-                                <Image 
-                                    key={index} 
-                                    src={`/assets/index/team/${key.toLowerCase().replace(' ', '_')}.webp`} 
-                                    alt={key} 
+                        team.map((entry, index) => {
+                            let name = entry["First Name"] + " " + entry["Last Name"];
+                            return <div key={index} className="relative flex flex-row justify-center items-center flex-shrink-0 gap-[15px] w-[70px] h-[70px] md:gap-[30px] md:w-[100px] md:h-[100px]">
+                                <Image
+                                    src={entry["Photo"][0]["url"]} 
+                                    alt={name} 
                                     fill
                                     className="cursor-pointer"
-                                    onMouseEnter={() => setSelected(value)} 
+                                    onMouseEnter={() => setSelected(entry)} 
                                     style={ {'borderRadius': '50px', 'boxShadow': '0px 4px 6px rgba(0, 0, 0, 0.1)'} }
                                 />
                             </div>
@@ -53,8 +55,8 @@ export const Team = () => {
                     <div className="relative w-[75px] h-[75px] md:w-[100px] md:h-[100px]">
                         <div className="relative w-[75px] h-[75px] md:w-[100px] md:h-[100px]">
                             <Image 
-                                src={`/assets/index/team/${selected["name"].toLowerCase().replace(' ', '_')}.webp`} 
-                                alt={selected["name"]}
+                                src={selected["Photo"][0]["url"]} 
+                                alt={selected["First Name"] + " " + selected["Last Name"]}
                                 width={100}
                                 height={100}
                                 style={ {'borderRadius': '50px', 'boxShadow': '0px 4px 6px rgba(0, 0, 0, 0.1)'} }
@@ -63,10 +65,10 @@ export const Team = () => {
                     </div>
                     <div className="relative flex flex-col w-full gap-[5px] md:w-[620px]">
                         <div className="flex flex-col">
-                            <h4 className="font-medium text-xl text-black md:text-2xl">{ selected["name"] }</h4>
-                            <h4 className="font-medium text-lg text-black md:text-xl">{ selected["role"] }</h4>
+                            <h4 className="font-medium text-xl text-black md:text-2xl">{ selected["First Name"] + " " + selected["Last Name"] }</h4>
+                            <h4 className="font-medium text-lg text-black md:text-xl">{ selected["Title"] }</h4>
                         </div>
-                        <p className="text-md text-black md:text-lg" style={ {'lineHeight': '1.2'} }>{ selected["description"] }</p>
+                        <p className="text-md text-black md:text-lg" style={ {'lineHeight': '1.2'} }>{ selected["Bio"] }</p>
                     </div>
                 </div>
             </div>
