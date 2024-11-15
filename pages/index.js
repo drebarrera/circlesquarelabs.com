@@ -8,9 +8,18 @@ import { Team } from "@/components/index/team";
 import { Process } from "@/components/index/process";
 import { Final } from "@/components/index/final";
 
+import { getTeam } from "@/services/index.service";
+
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+export async function getStaticProps() {
+  const teamData = await getTeam();
+  return {
+    props: { teamData },
+  };
+}
+
+export default function Home({ teamData }) {
   return (
     <main className={`flex min-h-screen flex-col items-center justify-between overflow-clip ${inter.className}`}>
       <Header position="sticky" />
@@ -18,7 +27,7 @@ export default function Home() {
       <ProductLab />
       <Community />
       <Projects />
-      <Team />
+      <Team teamData={ teamData }/>
       <Process />
       <Final />
     </main>

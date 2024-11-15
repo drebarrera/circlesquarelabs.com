@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-
 import Image from 'next/image';
+
+import { Icon } from "@/components/icon";
+import icons from '@/data/icons.json';
+
 import data from '@/data/team.json';
 import links from "@/data/links.json";
 
-export const Main = () => {
-    const router = useRouter();
-    const { spotlight } = router.query;
-    const [selected, setSelected] = useState(data[spotlight] ?? data[Object.keys(data)[0]]);
+export const Main = ({ teamData, fn, ln }) => {
+    const team = [...teamData];
+    const [selected, setSelected] = useState(team.find((entry) => entry["First Name"] === fn && entry["Last Name"] === ln) ?? team[0]);
     const [windowWidth, setWindowWidth] = useState(0);
 
     useEffect(() => {
@@ -25,10 +26,6 @@ export const Main = () => {
         };
     }, []);
 
-    setTimeout(() => {
-        if (spotlight != null) { setSelected(data[spotlight]); }
-    }, 10);
-
     return(
         <section id="team" className="h-fit w-full flex flex-col justify-center items-start gap-[20px]">
             <div className="h-fit w-full sm:bg-[rgba(0,255,255,0.4)] flex flex-col justify-center items-start gap-[10px] sm:gap-[20px] px-[40px] pt-[100px] pb-[25px] sm:pt-[100px] sm:pb-[45px] md:pt-[130px] md:pb-[65px]">
@@ -43,38 +40,104 @@ export const Main = () => {
                 <div className="h-fit sm:h-[855px] w-full flex flex-col sm:min-w-[450px] max-w-[600px] bg-[rgba(0,0,0,0.3)] pb-[30px] sm:pb-[0px] pt-[30px] px-[30px] gap-[10px] sm:gap-[20px]" style={{'border-radius': '20px'}}>
                     <div className="relative w-[100px] h-[100px] sm:w-[200px] sm:h-[200px] md:w-[250px] md:h-[250px]">
                         <Image 
-                            src={`/assets/index/team/${selected["name"].toLowerCase().replace(' ', '_')}.webp`} 
-                            alt={selected["name"]}
+                            src={selected["Photo"][0]["url"]} 
+                            alt={selected["First Name"] + " " + selected["Last Name"]}
                             width={300}
                             height={300}
                             style={ {'borderRadius': '50px', 'boxShadow': '0px 4px 6px rgba(0, 0, 0, 0.1)'} }
                         />
                     </div>
                     <div className="flex flex-col gap-[5px]">
-                        <h3 className="text-white font-semibold text-2xl sm:text-4xl md:text-4xl">{selected["name"]}</h3>
-                        <h4 className="text-white text-xl sm:text-xl md:text-2xl">{selected["role"]}</h4>
+                        <h3 className="text-white font-semibold text-2xl sm:text-4xl md:text-4xl">{selected["First Name"] + " " + selected["Last Name"]}</h3>
+                        <h4 className="text-white text-xl sm:text-xl md:text-2xl">{selected["Title"]}</h4>
                     </div>
-                    <p className="text-white opacity-90 text-md sm:text-lg lg:text-xl">{ selected["description"] }</p>
+                    <p className="text-white opacity-90 text-md sm:text-lg lg:text-xl">{ selected["Bio"] }</p>
+                    <div className="flex flex-row flex-wrap gap-[5px]">
+                        {
+                            Object.entries(selected["Skills"]).filter((entry, index) => Object.keys(icons).includes(entry[1]?.toLowerCase())).map((entry, index) => {
+                                return <Icon key={index} icon={entry[1].toLowerCase()} classData="relative w-[40px] h-[40px] cursor-pointer" title={entry[1]}/>
+                            })
+                        }
+                        {
+                            /*
+                             ['4', 'Go']
+1
+: 
+(2) ['10', 'Node.js']
+2
+: 
+(2) ['12', 'SQL']
+3
+: 
+(2) ['13', 'NoSQL']
+4
+: 
+(2) ['19', 'Unix']
+5
+: 
+(2) ['20', 'Bash Scripting']
+6
+: 
+(2) ['21', 'Shell Scripting']
+7
+: 
+(2) ['22', 'JSON']
+8
+: 
+(2) ['23', 'RESTful APIs']
+9
+: 
+(2) ['24', 'Full-Stack Development']
+10
+: 
+(2) ['25', 'Backend Development']
+11
+: 
+(2) ['26', 'Frontend Development']
+12
+: 
+(2) ['28', 'GitHub']
+13
+: 
+(2) ['30', 'UI Design']
+14
+: 
+(2) ['31', 'UX Design']
+15
+: 
+(2) ['32', 'Web Design']
+16
+: 
+(2) ['36', 'CI/CD']
+17
+: 
+(2) ['37', 'Color Theory']
+18
+: 
+(2) ['40', 'TailwindCSS']*/
+                            console.log(Object.entries(selected["Skills"]).filter((entry, index) => !Object.keys(icons).includes(entry[1]?.toLowerCase())))
+                        }
+                    </div>
                 </div>
                 <div className="relative h-fit sm:h-[925px] w-full bg-white py-[10px] sm:py-[40px] px-[10px] sm:px-[30px] sm:top-[-70px]" style={{borderRadius: (windowWidth < 640) ? '20px' : '20px 0px 0px 20px'}}>
                     <div className="relative h-full w-full bg-white flex flex-row flex-wrap justify-center gap-[15px] sm:gap-[40px] overflow-y-auto ">
                         {
-                            Object.entries(data).map(([key, value], index) => {
-                                return <a key={key} href={`/team?spotlight=${key}#spotlight`}><div className="flex flex-col items-center gap-[10px] sm:gap-[30px] w-[100px] md:w-[200px]">
+                            team.map((entry, index) => {
+                                let name = entry["First Name"] + " " + entry["Last Name"];
+                                return <a key={index} href={`/team?fn=${entry["First Name"]}&ln=${entry["Last Name"]}#spotlight`}><div className="flex flex-col items-center gap-[10px] sm:gap-[30px] w-[100px] md:w-[200px]">
                                     <div className="relative flex flex-row justify-center items-center flex-shrink-0 gap-[15px] w-[100px] h-[100px] md:gap-[30px] md:w-[175px] md:h-[175px]">
                                         <Image 
-                                            key={index} 
-                                            src={`/assets/index/team/${key.toLowerCase().replace(' ', '_')}.webp`} 
-                                            alt={key} 
+                                            src={entry["Photo"][0]["url"]}
+                                            alt={name} 
                                             fill
                                             className="cursor-pointer"
-                                            onMouseEnter={() => setSelected(value)} 
+                                            onMouseEnter={() => setSelected(entry)} 
                                             style={ {'borderRadius': '100px', 'boxShadow': '0px 4px 6px rgba(0, 0, 0, 0.1)'} }
                                         />
                                     </div>
                                     <div className="flex flex-col items-center gap-[5px] whitespace-pre-wrap text-wrap text-center">
-                                        <p className="font-semibold text-gray-700 text-lg md:text-xl">{value["name"]}</p>
-                                        <p className="hidden sm:inline text-md md:text-lg" style={{"line-height": "25px"}}>{value["role"]}</p>
+                                        <p className="font-semibold text-gray-700 text-lg md:text-xl">{name}</p>
+                                        <p className="hidden sm:inline text-md md:text-lg" style={{"line-height": "25px"}}>{entry["Title"]}</p>
                                     </div>
                                 </div></a>
                             })
