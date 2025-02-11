@@ -16,6 +16,7 @@ export async function getServerSideProps(context) {
 const inter = Inter({ subsets: ["latin"] });
 
 export default function AndresBarrera({ andresData }) {
+    console.log(andresData["Skills"])
     return (
         <main className={`flex overflow-clip min-h-screen flex-col items-center gap-[80px] ${inter.className}`} style={{ background: 'linear-gradient(170deg, rgba(25,53,78,0) 20%, rgba(0,255,255,0.4) 55%, rgba(25,53,78,0)) 80%' }}>
             <Header position="fixed" />
