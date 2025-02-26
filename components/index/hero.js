@@ -107,6 +107,7 @@ export const Hero = () => {
                                     src={`/assets/index/hero/${(value["fit"] == "switch" && windowWidth < 760) ?  value["image"] + "_sm" : (value["fit"] == "switch" && windowWidth >= 760) ? value["image"] + "_lg" : value["image"]}.webp`}
                                     alt="Code Example"
                                     fill
+                                    priority
                                     style={{ objectFit: (value["fit"] == "switch") ? "cover" : value["fit"], objectPosition: (value["fit"] == "switch" && windowWidth < 760) ? 'center' : 'left' }}
                                 />
                             </div>
