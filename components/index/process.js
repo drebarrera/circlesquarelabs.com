@@ -12,7 +12,7 @@ export const Process = () => {
             <div className="h-fit flex flex-col w-full md:w-[800px]">
                 {
                     Object.entries(data).map(([key, value], index) => {
-                        return <div className="w-fill h-fit flex flex-row px-[10px] gap-[10px] md:gap-[20px]">
+                        return <div key={index} className="w-fill h-fit flex flex-row px-[10px] gap-[10px] md:gap-[20px]">
                             <div className="w-[100px] h-fill flex flex-col items-center">
                                 <div className="flex-none w-[50px] h-[50px] md:w-[100px] md:h-[100px]" style={ {'borderRadius': '8px', 'boxShadow': '0px 4px 6px rgba(0, 0, 0, 0.1)', 'background': `linear-gradient(to bottom right, ${value["bg-start"]} 0%, ${value["bg-stop"]} 100%)`} }>
                                     <div className="flex justify-center items-center w-[50px] h-[50px] md:w-[100px] md:h-[100px]">

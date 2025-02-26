@@ -17,9 +17,8 @@ export const Community = () => {
                 <div className="h-fit w-fit flex flex-row justify-center items-center gap-[15px] md:gap-[30px]">
                     {
                         Object.entries(data).map(([key, value], index) => {
-                            return <div className="relative flex flex-row justify-center items-center gap-[15px] w-[70px] h-[70px] md:gap-[30px] md:w-[100px] md:h-[100px]">
-                                <Image 
-                                    key={index} 
+                            return <div key={index} className="relative flex flex-row justify-center items-center gap-[15px] w-[70px] h-[70px] md:gap-[30px] md:w-[100px] md:h-[100px]">
+                                <Image
                                     src={`/assets/index/community/${key.toLowerCase().replace(' ', '_')}.webp`} 
                                     alt={key} 
                                     fill
