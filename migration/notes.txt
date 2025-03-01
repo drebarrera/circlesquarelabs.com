@@ -1,0 +1,148 @@
+To implement permissions in Supabase as described, based on user roles and specific access for organizations and projects, we can define policies and leverage Supabase's PostgreSQL features (like `jsonb` for flexible permissions storage and row-level security). Below is a detailed approach to handle the access control and enforce the policies.
+
+### Overview
+
+1. **Admin Role**: If a user has the `admin` role in the `users` table, they will have full access to all organizations, projects, and users without any further restrictions.
+   
+2. **User Permissions**: If the user has specific permissions (e.g., `AllUsersAllMethods`, `OrgOnlySelectMethod`), they can perform actions based on those permissions. For example, `AllUsersAllMethods` means the user can perform all actions (select, insert, update, delete) on the `users` table. `OrgOnlySelectMethod` limits access to only the organizations the user is associated with.
+
+3. **Visibility**: Users should only see organizations and projects they are associated with through `organization_users` and `project_users`.
+
+4. **Org Admins and Project Admins**: Users with an "admin" role within a specific organization or project will have full access to edit their organizations and projects.
+
+5. **Permissions per Project/Organization**: Each user can have permissions based on their specific rank for the organization or project, allowing detailed control.
+
+### Implementation Strategy
+
+1. **Table Design**: You already have the correct table structure for `users`, `organizations`, `projects`, `organization_users`, and `project_users`. We'll need to focus on the permission system and apply the right policies for each use case.
+
+2. **Row-Level Security**: We will set up policies in Supabase for row-level security based on the user’s `role` and `permissions`.
+
+### SQL Schema Setup
+
+#### 1. Users Table
+
+The `users` table already defines the role (`admin`, `contractor`, `client`) and permissions for each user. The `permissions` column is a `text[]` array, which stores the specific access controls that a user has.
+
+#### 2. Organizations and Projects Tables
+
+The tables for `organizations` and `projects` are correctly designed. `organizations` contain information about the organization, while `projects` are linked to organizations.
+
+#### 3. `organization_users` and `project_users` Tables
+
+The `organization_users` and `project_users` tables link users to specific organizations or projects. The `permissions` column for these tables is `jsonb`, which will store the user-specific permissions for each project/organization.
+
+### 4. Policies for Row-Level Security
+
+We'll define Supabase row-level security (RLS) policies to enforce the permissions.
+
+#### Enabling Row-Level Security
+
+To enable RLS for the tables:
+
+```sql
+-- Enable RLS on the users table (for row-level security)
+ALTER TABLE users ENABLE ROW LEVEL SECURITY;
+
+-- Enable RLS on the organizations and projects tables
+ALTER TABLE organizations ENABLE ROW LEVEL SECURITY;
+ALTER TABLE projects ENABLE ROW LEVEL SECURITY;
+
+-- Enable RLS on the organization_users and project_users tables
+ALTER TABLE organization_users ENABLE ROW LEVEL SECURITY;
+ALTER TABLE project_users ENABLE ROW LEVEL SECURITY;
+```
+
+#### Defining RLS Policies
+
+We’ll define the policies based on the conditions mentioned.
+
+### 1. Admin Role – Full Access
+
+For users with the `admin` role, they should have full access to all data without restrictions.
+
+```sql
+-- Allow users with 'admin' role to access all data
+CREATE POLICY admin_access ON users
+FOR SELECT, INSERT, UPDATE, DELETE
+USING (role = 'admin');
+
+-- Apply similar policy to organizations and projects tables
+CREATE POLICY admin_access_orgs ON organizations
+FOR SELECT, INSERT, UPDATE, DELETE
+USING (EXISTS (SELECT 1 FROM users WHERE users.id = auth.uid() AND users.role = 'admin'));
+
+CREATE POLICY admin_access_projects ON projects
+FOR SELECT, INSERT, UPDATE, DELETE
+USING (EXISTS (SELECT 1 FROM users WHERE users.id = auth.uid() AND users.role = 'admin'));
+```
+
+### 2. User Permissions – Select, Insert, Update, Delete on Users Table
+
+To implement user permissions like `AllUsersAllMethods`, `OrgOnlySelectMethod`, etc., we need to write policies that check the user's permissions from their `permissions` JSON or `text[]` column.
+
+```sql
+-- Allow users to access users based on permissions
+CREATE POLICY user_access_users ON users
+FOR SELECT, INSERT, UPDATE, DELETE
+USING (
+  role = 'admin' -- admins always have full access
+  OR 
+  auth.uid() IN (SELECT user_id FROM organization_users WHERE permissions->>'AllUsersAllMethods' IS NOT NULL)
+);
+
+-- Similar policies for organization and project data
+CREATE POLICY org_select_permission ON organizations
+FOR SELECT
+USING (
+  auth.uid() IN (SELECT user_id FROM organization_users WHERE permissions->>'OrgOnlySelectMethod' IS NOT NULL AND organization_id IN (SELECT organization_id FROM organization_users WHERE user_id = auth.uid()))
+);
+
+CREATE POLICY project_select_permission ON projects
+FOR SELECT
+USING (
+  auth.uid() IN (SELECT user_id FROM project_users WHERE permissions->>'ProjectOnlySelectMethod' IS NOT NULL AND project_id IN (SELECT project_id FROM project_users WHERE user_id = auth.uid()))
+);
+```
+
+### 3. Default Permissions on Organizations and Projects
+
+By default, users will have `-1` rank in the permissions for organizations and projects, meaning they can access all relevant data, as specified in the `permissions` column of `organization_users` and `project_users`.
+
+```sql
+-- Default organization permissions
+UPDATE organization_users
+SET permissions = '{"OrgOnlySelectMethod": "-1", "OrgOnlyUpdateMethod": "-1"}'
+WHERE organization_id = <organization_id> AND user_id = <user_id>;
+
+-- Default project permissions
+UPDATE project_users
+SET permissions = '{"ProjectOnlySelectMethod": "-1", "ProjectOnlyUpdateMethod": "-1"}'
+WHERE project_id = <project_id> AND user_id = <user_id>;
+```
+
+### 4. Grant Full Access to Admins of Organizations and Projects
+
+For users who are assigned `admin` roles in specific organizations or projects, they should have access to all methods (select, insert, update, delete).
+
+```sql
+-- Allow organization admins to have full access
+CREATE POLICY org_admin_access ON organization_users
+FOR SELECT, INSERT, UPDATE, DELETE
+USING (
+  role = 'admin' -- organization admins have full access
+);
+
+-- Allow project admins to have full access
+CREATE POLICY project_admin_access ON project_users
+FOR SELECT, INSERT, UPDATE, DELETE
+USING (
+  role = 'admin' -- project admins have full access
+);
+```
+
+### Conclusion
+
+This approach uses Supabase's built-in row-level security (RLS) to enforce granular access control based on user roles and permissions. The permissions are stored in `jsonb` (for organizations and projects) and `text[]` (for the `users` table), and the policies enforce the access rules depending on the user’s role and the permissions assigned to them.
+
+You will need to refine the policies to match the exact permissions model you require (e.g., checking permission ranks, restricting actions to specific methods, etc.), but this provides a foundation for enforcing the access rules.
